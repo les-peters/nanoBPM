@@ -3,3 +3,16 @@ create table actors (
     username varchar(32) not null,
     email    varchar(64) not null,
 );
+
+create table flow (
+    workflow_id    int,
+    entry_state    int,
+    actor_id       int,
+    exit_state     int,
+);
+
+create table state_engine (
+    workflow_id    int,
+    state_sql      varchar(255),
+    action_coderef varchar(255),
+);
