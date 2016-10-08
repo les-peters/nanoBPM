@@ -4,7 +4,13 @@ create table actors (
     email    varchar(64) not null,
 );
 
+create table roles (
+    id   int auto_increment PRIMARY KEY,
+    name varchar(32)
+);
+
 create table flow (
+    id   int auto_increment PRIMARY KEY,
     workflow_id    int,
     entry_state    int,
     actor_id       int,
@@ -12,7 +18,18 @@ create table flow (
 );
 
 create table state_engine (
+    id             int auto_increment PRIMARY KEY,
     workflow_id    int,
     state_sql      varchar(255),
     action_coderef varchar(255),
+);
+
+create table form (
+    id          int auto_increment PRIMARY KEY,
+    workflow_id int,
+    role_id     int,
+    step_number int,
+    field_name  varchar(64),
+    field_order int,
+    is_required ('n', 'y') default 'y',
 );
