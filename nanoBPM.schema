@@ -9,12 +9,18 @@ create table roles (
     name varchar(32)
 );
 
-create table flow (
-    id   int auto_increment PRIMARY KEY,
+create table states (
+    id          int auto_increment PRIMARY KEY,
+    workflow_id int,
+    name        varchar(32),
+);
+
+create table flows (
+    id             int auto_increment PRIMARY KEY,
     workflow_id    int,
-    entry_state    int,
     actor_id       int,
-    exit_state     int,
+    entry_state_id int,
+    exit_state_id  int,
 );
 
 create table state_engine (
@@ -32,4 +38,11 @@ create table form (
     field_name  varchar(64),
     field_order int,
     is_required ('n', 'y') default 'y',
+    css_id      int,
+    js_valid_id int,
+);
+
+create table css (
+    id          int auto_increment PRIMARY KEY,
+    style       varchar(255),
 );
