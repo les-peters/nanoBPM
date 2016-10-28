@@ -26,10 +26,20 @@ create table states (
     name        varchar(32)
 );
 
+create table state_changes (
+    id            int auto_increment PRIMARY KEY,
+    workflow_id   int NOT NULL,
+    request_id    int NOT NULL,
+    actor_id      int NOT NULL,
+    state_id      int NOT NULL,
+    last_modified datetime NOT NULL,
+    comment       text,
+);
+
 create table flows (
     id             int auto_increment PRIMARY KEY,
     workflow_id    int,
-    actor_id       int,
+    role_id        int,
     entry_state_id int,
     exit_state_id  int
 );
